@@ -1,14 +1,15 @@
-/* main.c simple program to test compilation and assembly */
+/* main.c simple program to test your assembly program */
 
 #include <stdio.h>
 
-/* "test" is our function that is written in ARMv8 Assembly */
-extern long long int test(long long int a, long long int b);
+extern long long int test ( long long int b);
 
-int main(void)
-{
-    long long int a = test(3, 5); /* Calling assembly funct test from
-				     a C program */
-    printf("Result of test(3, 5) = %lld\n", a);
-    return 0;
+int main ( void ){
+
+  long long int a = test(24) ;  // Replace Y with any number you like
+
+  printf ("Result is = %d\n", a);
+
+  return 0;
+
 }
