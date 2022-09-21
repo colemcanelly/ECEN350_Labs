@@ -14,6 +14,5 @@ int main(void)
 	printf(c_result);
 
 	long long int* d_result = lab02d(69);
-	printf(*d_result);
 	return 0;
 }
