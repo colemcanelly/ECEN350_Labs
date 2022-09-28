@@ -24,6 +24,11 @@ my_mul.o: my_mul.S
 # Compile for best debug view (lowest optimization)
 	$(CC) $(FLAGS) -c $^ -o $@
 
-$(TARGET): main.o my_mul.o
+lab04b.o: lab04b.S
+# Compile for best debug view (lowest optimization)
+	$(CC) $(FLAGS) -c $^ -o $@
+
+
+$(TARGET): main.o my_mul.o lab04b.o
 # Link with specific base address to suit VE model memory layout
-	$(LD) main.o my_mul.o -o $@
+	$(LD) $^ -o $@
