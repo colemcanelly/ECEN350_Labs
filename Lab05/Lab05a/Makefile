@@ -7,6 +7,9 @@ TARGET=Lab05a
 CC=gcc
 LD=gcc
 
+ASM=test2.S test.S
+OBJS= $(ASM:%.S=%.o)
+
 FLAGS=-g -O0
 
 all: $(TARGET)
@@ -19,9 +22,9 @@ main.o: main.c
 # Compile for best debug view (lowest optimization)
 	$(CC) $(FLAGS) -c $^  -o $@
 
-test.o: test.S
 # Compile for best debug view (lowest optimization)
+%.o: %.S
 	$(CC) $(FLAGS) -c $^ -o $@
 
-$(TARGET): main.o test.o
-	$(LD) main.o test.o -o $@
+$(TARGET): main.o $(OBJS)
+	$(LD) main.o $(OBJS) -o $@
