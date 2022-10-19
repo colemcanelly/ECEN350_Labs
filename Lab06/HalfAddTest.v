@@ -25,6 +25,11 @@
 `define STRLEN 15
 module HalfAddTest_v;
 
+   initial begin
+      $dumpfile("HalfAddTest.vcd");
+      $dumpvars(0, HalfAddTest_v);
+   end
+   
    task passTest;
       input [1:0] actualOut, expectedOut;
       input [`STRLEN*8:0] testType;
