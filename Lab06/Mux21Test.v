@@ -25,6 +25,11 @@
 `define STRLEN 15
 module Mux21Test_v;
 
+initial begin
+   $dumpfile("Mux21Test.vcd");
+   $dumpvars(0, Mux21Test_v);
+end
+
 	task passTest;
 		input actualOut, expectedOut;
 		input [`STRLEN*8:0] testType;

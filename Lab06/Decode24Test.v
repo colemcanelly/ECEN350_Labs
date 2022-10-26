@@ -25,6 +25,10 @@
 `define STRLEN 15
 module Decode24Test_v;
 
+   initial begin
+      $dumpfile("Decode24Test.vcd");
+      $dumpvars(0, Decode24Test_v);
+   end
 	task passTest;
 		input [3:0] actualOut, expectedOut;
 		input [`STRLEN*8:0] testType;
