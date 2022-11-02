@@ -16,12 +16,14 @@ module ALU(BusW, BusA, BusB, ALUCtrl, Zero);
     
     always @(ALUCtrl or BusA or BusB) begin
         case(ALUCtrl)
-            `AND: begin
-                BusW = ...;
-            end
-            ...
+          `AND:   BusW = (BusA & BusB);
+	  `OR:    BusW = (BusA | BusB);
+	  `ADD:   BusW = (BusA + BusB);
+	  `SUB:   BusW = (BusA - BusB);
+	  `PassB: BusW = BusB;
+	  default: BusW = 64'h6969696969696969;
         endcase
     end
 
-    assign Zero = 
+   assign Zero = (BusW == 64'h0) ? 1'b1 : 1'b0;    // Zero = (BusW == 0)
 endmodule

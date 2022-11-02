@@ -13,7 +13,7 @@
 // Description: 
 //
 // Verilog Test Fixture created by ISE for module: SignExtender
-//
+//$display ("%s passed", testType)
 // Dependencies:
 // 
 // Revision:
@@ -30,7 +30,7 @@ module SignExtenderTest_v;
       $dumpvars(0, SignExtenderTest_v);
    end
 	task passTest;
-		input [64:0] actualOut, expectedOut;
+		input [63:0] actualOut, expectedOut;
 		input [`STRLEN*8:0] testType;
 		inout [7:0] passed;
 	
@@ -68,14 +68,15 @@ module SignExtenderTest_v;
 		passed = 0;
 
                 // Here is one example test vector, testing the ADD instruction:
-		{Input, Ctrl} = {26'h24, 2'h0}; #40; passTest({BusImm}, 64'h24, "SE I-0", passed);
-	        {Input, Ctrl} = {26'b11111111111111111111011100, 2'h0}; #40; passTest({BusImm}, 64'hffffffffffffffdc, "SE I-1", passed);
-	        {Input, Ctrl} = {26'h24, 2'h1}; #40; passTest({BusImm}, 64'h24, "SE D-0", passed);
-	        {Input, Ctrl} = {26'b11111111111111111111011100, 2'h1}; #40; passTest({BusImm}, 64'hffffffffffffffdc, "SE D-1", passed);
-	        {Input, Ctrl} = {26'h24, 2'h2}; #40; passTest({BusImm}, 64'h24, "SE B-0", passed);
-	        {Input, Ctrl} = {26'b11111111111111111111011100, 2'h2}; #40; passTest({BusImm}, 64'hffffffffffffffdc, "SE B-1", passed);
-	        {Input, Ctrl} = {26'h24, 2'h3}; #40; passTest({BusImm}, 64'h24, "SE CB-0", passed);
-	        {Input, Ctrl} = {26'b11111111111111111111011100, 2'h3}; #40; passTest({BusImm}, 64'hffffffffffffffdc, "SE CB-1", passed);
+	        $display ("8 Test Vectors:");
+		{Input, Ctrl} = {26'h444, 2'h0}; #40; passTest({BusImm}, 64'h1, "I  :: Positive", passed);
+	        {Input, Ctrl} = {26'hfff73ff, 2'h0}; #40; passTest({BusImm}, 64'hffffffffffffffdc, "I  :: Negative", passed);
+	        {Input, Ctrl} = {26'h1234, 2'h1}; #40; passTest({BusImm}, 64'h1, "D  :: Positive", passed);
+	        {Input, Ctrl} = {26'hffdcfff, 2'h1}; #40; passTest({BusImm}, 64'hffffffffffffffdc, "D  :: Negative", passed);
+	        {Input, Ctrl} = {26'h24, 2'h2}; #40; passTest({BusImm}, 64'h24, "B  :: Positive", passed);
+	        {Input, Ctrl} = {26'hfffffdc, 2'h2}; #40; passTest({BusImm}, 64'hffffffffffffffdc, "B  :: Negative", passed);
+	        {Input, Ctrl} = {26'h20, 2'h3}; #40; passTest({BusImm}, 64'h1, "CB :: Positive", passed);
+	        {Input, Ctrl} = {26'hffffb9f, 2'h3}; #40; passTest({BusImm}, 64'hffffffffffffffdc, "CB :: Negative", passed);
 	        
 		//Reformate and add your test vectors from the prelab here following the example of the testvector above.	
 
