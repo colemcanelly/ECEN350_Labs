@@ -17,10 +17,11 @@ module NextPClogic(NextPC, CurrentPC, SignExtImm64, Branch, ALUZero, Uncondbranc
    input 	Branch, ALUZero, Uncondbranch; 
    output [63:0] NextPC; 
 
-   /* write your code here */
+   // Boolean algebra to determine the `select` bit for the mux
    wire 	 sel = ((ALUZero & Branch) | Uncondbranch);
 
-   // Might have to put `CurrentPC` inside ternary operator result
+   // If the select is true (take the branch) add the SE<<2 to the current PC
+   //  if select is false, increment to next instruction (+4)
    assign NextPC = CurrentPC + (sel ? (SignExtImm64<<2) : (3'b100));
 
 endmodule
