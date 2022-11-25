@@ -25,6 +25,10 @@
 `define STRLEN 32
 module RegisterFileTest_v;
 
+   initial begin
+      $dumpfile("RegisterFileTest.vcd");
+      $dumpvars(0, RegisterFileTest_v);
+   end
 
    task passTest;
       input [63:0] actualOut, expectedOut;
