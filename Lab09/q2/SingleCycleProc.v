@@ -140,7 +140,7 @@ module singlecycle(
           .ReadData(readData),
           .MemoryWrite(memwrite),
           .MemoryRead(memread),
-          .Clock(CLK)
+          .Clk(CLK)
           );
 
 
