@@ -121,11 +121,27 @@ module singlecycle(
 		       .NextPC(nextpc)
 		       );  // Done
    
-   RegisterFile rf();
+   RegisterFile rf(
+        .RegWr(regwrite),
+        .RA(rm),
+        .RB(rn),
+        .RW(rd),
+        .BusW(MemtoRegOut),
+        .BusA(regoutA),
+        .BusB(regoutB),
+        .Clk(CLK)
+        );
    
 
    // Lab09
-   DataMemory dmem();
+   DataMemory dmem(
+          .Address(aluout),
+          .WriteData(regoutB),
+          .ReadData(readData),
+          .MemoryWrite(memwrite),
+          .MemoryRead(memread),
+          .Clk(CLK)
+          );
 
 
 endmodule
