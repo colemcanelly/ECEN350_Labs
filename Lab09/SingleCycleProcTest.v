@@ -91,6 +91,30 @@ module SingleCycleProcTest_v;
       // Add your new tests here
       // ***********************************************************
 
+      // Program 2
+      #1
+        Reset_L = 0; startPC = 64'h100;
+      @(posedge CLK);
+      @(negedge CLK);
+      @(posedge CLK);
+      Reset_L = 1;
+
+      // ***********************************************************
+      // This while loop will continue cycling the processor until the
+      // PC reaches the final instruction in the first test.  If the
+      // program forms an infinite loop, never reaching the end, the
+      // watchdog timer will kick in and kill simulation after 64K
+      // cycles.
+      // ***********************************************************
+
+      while (currentPC < 64'h0120)
+        begin
+	   @(posedge CLK);
+	   @(negedge CLK);
+           $display("CurrentPC:%h",currentPC);
+        end
+      passTest(MemtoRegOut, 64'h123456789abcdef0, "Results of Program 2", passed);
+
       // Done
       allPassed(passed, 2);   // Be sure to change the one to match
       // the number of tests you add.

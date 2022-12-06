@@ -1,0 +1,9 @@
+63'h0100:	Data = 32'hd2e24689;		// MOVZ    X9, 0x1234, lsl #48
+63'h0104:	Data = 32'hd2cacf0a;		// MOVZ    X10, 0x5678, lsl #32
+63'h0108:	Data = 32'hd2b3578b;		// MOVZ    X11, 0x9abc, lsl #16
+63'h010c:	Data = 32'hd29bde0c;		// MOVZ    X12, 0xdef0, lsl #0
+63'h0110:	Data = 32'h8b0c016d;		// ADD     X13, X11, X12
+63'h0114:	Data = 32'h8b0a012e;		// ADD     X14, X9, X10
+63'h0118:	Data = 32'h8b0e01a9;		// ADD     X9, X13, X14
+63'h011c:	Data = 32'hf80283e9;		// STUR    X9, [X31, 0x28]
+63'h0120:	Data = 32'hf84283ea;		// LDUR    X10, [X31, 0x28]
